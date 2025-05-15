@@ -4,8 +4,8 @@ import Base from "./Base";
 class Board extends Base {
     private createBy : string;
     private tasks: Task[];
-    constructor(id: string, name: string, createBy: string, tasks: Task[]) {
-        super(id, name);
+    constructor( name: string, createBy: string, tasks: Task[]) {
+        super(name);
         this.createBy = createBy;
         this.tasks = tasks;
     }

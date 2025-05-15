@@ -1,9 +1,10 @@
+import { v4 as uuidv4 } from 'uuid';
 class Base {
    protected id: string;
    protected name: string;
 
-    constructor(id: string, name: string) {
-        this.id = id;
+    constructor( name: string) {
+        this.id = uuidv4();
         this.name = name;
     }
 

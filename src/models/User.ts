@@ -1,21 +1,22 @@
 import Base from "./Base";
 
-class User extends Base {
+namespace Model {
+  export class User extends Base {
     private email: string;
-  
-    constructor(id:string, name: string, email: string,) {
-        super(id,name);
-       this.email = email;
+
+    constructor(name: string, email: string) {
+      super(name);
+      this.email = email;
     }
 
     public getEmail(): string {
-        return this.email;
+      return this.email;
     }
-    
+
     public setEmail(email: string): void {
-        this.email = email;
+      this.email = email;
     }
-    
+  }
 }
 
-export default User;
+export default Model;

@@ -7,7 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "readline-sync": "^1.4.10",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "uuid": "^11.1.0"
   },
   "compilerOptions": {
     "target": "ES2020",
@@ -22,6 +23,7 @@
     "start": "ts-node src/index.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.15.18",
     "@types/readline-sync": "^1.4.8",
     "ts-node": "^10.9.2"
   }

@@ -1,8 +1,16 @@
- import { askNonEmpty } from "./utils/askNonEmpty";
+ import Model from "./models/User";
+import UserService from "./services/UserService";
+import { askNonEmpty } from "./utils/AskNonEmpty";
 
 
 
-
+ function addUser() {
+    const name = askNonEmpty("Nhập tên: ", "string") as string;
+    const email = askNonEmpty("Nhập email: ", "string") as string;
+    const user = new Model.User(name, email);
+    UserService.addUser(user);
+ }
+ 
 function main() {
     while (true) {
         console.log("1. add user");
@@ -20,7 +28,7 @@ function main() {
                 process.exit(0)
                 break;
             case "1":
-                
+                addUser();
                 break;
             case "2":
                

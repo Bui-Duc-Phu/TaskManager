@@ -6,8 +6,9 @@ class Task extends Base {
     private dueDate: Date;
     private assignee: string;
     private boardId: string;
-    constructor(id: string, name: string, description: string, status: 'todo' | 'in-progress' | 'done', dueDate: Date, assignee: string, boardId: string) {
-        super(id, name);
+    
+    constructor(name: string, description: string, status: 'todo' | 'in-progress' | 'done', dueDate: Date, assignee: string, boardId: string) {
+        super(name);
         this.description = description;
         this.status = status;
         this.dueDate = dueDate;
