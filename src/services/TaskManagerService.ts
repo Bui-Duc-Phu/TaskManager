@@ -59,4 +59,19 @@ export default class TaskManagerService {
         task.setStatus(taskStatus as "todo" | "in-progress" | "done");
         TaskService.updateTask(task);
     }
+
+    public static assignTask(taskName: string, userName: string): void {
+        const task = TaskService.getTaskByName(taskName);
+        if (!task) {
+            console.log("Task not found");
+            return;
+        }
+        const user = UserService.getUserByName(userName);
+        if (!user) {
+            console.log("User not found");
+            return;
+        }
+        task.setAssigneeId(user.getId());
+        TaskService.updateTask(task);
+    }
 }

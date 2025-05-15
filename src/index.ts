@@ -1,5 +1,6 @@
 import Task from "./models/Task";
 import User from "./models/User";
+import BoardService from "./services/BorardService";
 import TaskManagerService from "./services/TaskManagerService";
 import TaskService from "./services/TaskService";
 import UserService from "./services/UserService";
@@ -30,6 +31,17 @@ function showAllTask() {
         status: task.getStatus(),
         dueDate: task.getDueDate(),
         assignee: UserService.getUserById(task.getAssigneeId())?.getName()
+    }));
+    console.table(table)
+    console.log("\n")
+}
+
+function showAllProject() {
+    const projects = BoardService.getAllBoards();
+    const table = projects.map(project => ({
+        name: project.getName(),
+        createBy: UserService.getUserById(project.getCreateBy())?.getName(),
+        tasks: project.getTasks().map(taskId => TaskService.getTaskById(taskId)?.getName()).join(", ")
     }));
     console.table(table)
     console.log("\n")
@@ -89,17 +101,26 @@ function updateTask() {
     console.log("Cập nhật trạng thái thành công!\n");
 }
 
+function assignTask() {
+    showAllTask();
+    const taskName = askNonEmpty("Nhập tên task: ", "string") as string;
+    showAllUser();
+    const assignee = askNonEmpty("Nhập tên người thực hiện task: ", "string") as string;
+    TaskManagerService.assignTask(taskName, assignee);
+    console.log("Gán task thành công!\n");
+}
+
 function main() {
     while (true) {
-      
-        console.log("1. Add user");
-        console.log("2. Show All user");
-        console.log("3. Add task with new project");
-        console.log("4. Add task with existing project");
-        console.log("5. Update Task");
-        console.log("6. Mượn Sách");
-        console.log("7. Trả Sách");
-        console.log("8. Hiển thị phiếu mượn sách");
+        
+        console.log("1. Show All user");
+        console.log("2. Show all task");
+        console.log("3. Show all project");
+        console.log("4. Add user");
+        console.log("5. Add task with new project");
+        console.log("6. Add task with existing project");
+        console.log("7. Update Task");
+        console.log("8. Assign a task");
         console.log("0. Thoát");
         const choice = askNonEmpty("Nhập lựa chọn: ", "string") as string;
         switch (choice) {
@@ -108,25 +129,28 @@ function main() {
                 process.exit(0)
                 break;
             case "1":
-                addUser();
-                break;
-            case "2":
                 showAllUser();
                 break;
+            case "2":
+                showAllTask();
+                break;
             case "3":
-                addTaskWithNewProject();
+                showAllProject();
                 break;
             case "4":
-                addTaskWithExistingProject();
+                addUser();
                 break;
             case "5":
-                updateTask();
+                addTaskWithNewProject();
                 break;
             case "6":
-               
+                addTaskWithExistingProject();
                 break;
             case "7":
-               
+                updateTask();
+                break;
+            case "8":
+                assignTask();
                 break;
             default:
                 console.log("Lựa chọn không hợp lệ");
