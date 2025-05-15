@@ -1,11 +1,11 @@
-import Task from "./Task";
-import Base from "./Base";
 
-class Board extends Base {
+import  Base  from "./Base";
+
+export default class Board extends Base {
     private createBy : string;
-    private tasks: Task[];
-    constructor( name: string, createBy: string, tasks: Task[]) {
-        super(name);
+    private tasks: string[];
+    constructor( name: string, createBy: string, tasks: string[],id?:string) {
+        super(name,id);
         this.createBy = createBy;
         this.tasks = tasks;
     }
@@ -18,25 +18,13 @@ class Board extends Base {
         this.createBy = createBy;
     }
 
-    public getTasks(): Task[] {
+    public getTasks(): string[] {
         return this.tasks;
     }
-    
-    public addTask(task: Task): void {
-        this.tasks.push(task);
-    }
 
-    public removeTask(task: Task): void {
-        const index = this.tasks.findIndex(t => t.getId() === task.getId());
-        if (index !== -1) {
-            this.tasks.splice(index, 1);
-        }
+    public setTasks(tasks: string[]): void {
+        this.tasks = tasks;
     }
-
-    public getTaskById(id: string): Task | null {
-        return this.tasks.find(t => t.getId() === id) || null;
-    }
+ 
     
 }
-
-export default Board;

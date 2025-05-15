@@ -1,11 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-class Base {
-   protected id: string;
-   protected name: string;
 
-    constructor( name: string) {
-        this.id = uuidv4();
+export default class Base {
+    protected id: string;
+    protected name: string;
+
+    constructor(name: string,id?:string) {
         this.name = name;
+        this.id = id ? id : uuidv4();
     }
 
     public getId(): string {
@@ -24,5 +25,3 @@ class Base {
         this.id = id;
     }
 }
-
-export default Base;

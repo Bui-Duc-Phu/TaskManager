@@ -1,40 +1,32 @@
-import Base from "./Base";
+import  Base  from "./Base";
 
-class Task extends Base {
+export default class Task extends Base {
     private description: string;
     private status: 'todo' | 'in-progress' | 'done';
-    private dueDate: Date;
-    private assignee: string;
-    private boardId: string;
-    
-    constructor(name: string, description: string, status: 'todo' | 'in-progress' | 'done', dueDate: Date, assignee: string, boardId: string) {
-        super(name);
+    private dueDate: string;
+    private assigneeId: string;
+
+    constructor(name: string, description: string, status: 'todo' | 'in-progress' | 'done', dueDate: string, assigneeId: string,id?:string) {
+        super(name,id);
         this.description = description;
         this.status = status;
         this.dueDate = dueDate;
-        this.assignee = assignee;
-        this.boardId = boardId;
+        this.assigneeId = assigneeId;
     }
 
     public getDescription(): string {
         return this.description;
     }
-    
+
     public getStatus(): 'todo' | 'in-progress' | 'done' {
         return this.status;
     }
 
-    public getDueDate(): Date {
+    public getDueDate(): string {
         return this.dueDate;
     }
-    
-    public getAssignee(): string {
-        return this.assignee;
-    }
 
-    public getBoardId(): string {
-        return this.boardId;
-    }
+ 
 
     public setDescription(description: string): void {
         this.description = description;
@@ -44,20 +36,17 @@ class Task extends Base {
         this.status = status;
     }
 
-    public setDueDate(dueDate: Date): void {
+    public setDueDate(dueDate: string): void {
         this.dueDate = dueDate;
     }
 
-    public setAssignee(assignee: string): void {
-        this.assignee = assignee;
+    public getAssigneeId(): string {
+        return this.assigneeId;
     }
 
-    public setBoardId(boardId: string): void {
-        this.boardId = boardId;
+    public setAssigneeId(assigneeId: string): void {
+        this.assigneeId = assigneeId;
     }
-    
 
-    
+   
 }
-
-export default Task;

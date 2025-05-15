@@ -20,7 +20,8 @@
     "strict": true
   },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "test": "ts-node src/test/test.ts"
   },
   "devDependencies": {
     "@types/node": "^22.15.18",
